@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Datos dummy
+      var data = [
+        ['ID', 'X', 'Y', 'Size'],
+        ['A', 80, 167, 120],
+        ['B', 79, 136, 130],
+        ['C', 78, 184, 50],
+        ['D', 72, 278, 230],
+        ['E', 81, 200, 210],
+        ['F', 72, 170, 100]
+      ];
+
+      var dataTable = google.visualization.arrayToDataTable(data);
+
+      var options = {
+        title: 'Bubble Chart Example',
+        hAxis: {title: 'X Axis'},
+        vAxis: {title: 'Y Axis'},
+        bubble: {textStyle: {fontSize: 11}}
+      };
+
+      var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+      chart.draw(dataTable, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
