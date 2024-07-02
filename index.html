@@ -27,21 +27,22 @@
         }
 
         // Convertir el objeto de datos en el formato adecuado para Google Charts
-        const dataArray = [['ID', 'X', 'Y', 'Z', 'Size']];
+        const dataArray = [['ID', 'Urgencia', 'Complejidad', 'Z', 'Size']];
         dataObject.forEach(item => {
-          dataArray.push([item.ID, item.X, item.Y, item.Z,item.Size]);
+          dataArray.push([item.ID, item.Urgencia, item.Complejidad, item.Z,item.Size]);
         });
 
         var data = google.visualization.arrayToDataTable(dataArray);
 
         var options = {
           title: 'Bubble Chart Example',
-          hAxis: {title: 'Urgencia', titleTextStyle: { fontSize:25}},
-          vAxis: {title: 'Complejidad',titleTextStyle: { fontSize:25}},
+          hAxis: {title: 'Urgencia', titleTextStyle: { fontSize:20}, viewWindow: {min: 0, max:6}},
+          vAxis: {title: 'Complejidad',titleTextStyle: { fontSize:20}, viewWindow: {min:0 , max:6}},
           colorAxis: { colors: ['yellow','red']},
           bubble: {
             textStyle: {fontSize: 14},
-            sizeAxis: {minSize: 5, maxSize: 30}            
+            sizeAxis: {minSize: 10, maxSize: 70},
+            
           }
         };
 
