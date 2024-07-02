@@ -27,9 +27,9 @@
         }
 
         // Convertir el objeto de datos en el formato adecuado para Google Charts
-        const dataArray = [['ID', 'X', 'Y', 'Temperature', 'Size']];
+        const dataArray = [['ID', 'X', 'Y',  'Size']];
         dataObject.forEach(item => {
-          dataArray.push([item.ID, item.X, item.Y, item.Temperature,item.Size]);
+          dataArray.push([item.ID, item.X, item.Y,item.Size]);
         });
 
         var data = google.visualization.arrayToDataTable(dataArray);
@@ -40,7 +40,7 @@
           vAxis: {title: 'Complejidad'},
           bubble: {
             textStyle: {fontSize: 14},
-            sizeAxis: {minSize: 5, maxSize: 30} 
+            sizeAxis: {minSize: 5, maxSize: 50} 
           }
         };
 
