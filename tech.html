@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Obtener los datos desde los parámetros URL
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const dataParam = urlParams.get('data');
+        
+        // Asegurarse de que los datos están definidos y no son nulos
+        if (!dataParam) {
+          console.error('No data found in URL');
+          return;
+        }
+        
+        let dataObject;
+        try {
+          dataObject = JSON.parse(decodeURIComponent(dataParam));
+        } catch (e) {
+          console.error('Failed to parse data:', e);
+          return;
+        }
+
+        // Convertir el objeto de datos en el formato adecuado para Google Charts
+        const dataArray = [['ID', 'Ventaja Competitiva', 'Relevancia Estratégica', 'Solución', 'Madurez Tecnológica']];
+        dataObject.forEach(item => {
+          dataArray.push([item.a_ID, item.b_Ventaja, item.c_Relevancia, item.d_Solucion,item.e_Madurez]);
+        });
+
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+          title: '',
+          hAxis: {title: 'Ventaja Competitiva', titleTextStyle: { fontSize:20}, viewWindow: {min: 0, max:6}, ticks: [0,1,2,3,4,5,6]},
+          vAxis: {title: 'Relevancia Estrategica',titleTextStyle: { fontSize:20}, viewWindow: {min:0 , max:6}, ticks: [0,1,2,3,4,5,6]},
+          colorAxis: { colors: ['yellow','red']},
+          bubble: {
+            textStyle: {fontSize: 14},
+            sizeAxis: {minSize: 0, maxSize: 5},            
+          },
+          legend:'none',
+          chartArea: {left:50, top:10, bottom:50,'width': '80%'}
+        };
+
+        var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 1150px; height: 600px;"></div>
+  </body>
+</html>
