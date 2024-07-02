@@ -7,18 +7,18 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      // Datos dummy
-      var data = [
-        ['ID', 'X', 'Y', 'Size'],
-        ['A', 80, 167, 120],
-        ['B', 79, 136, 130],
-        ['C', 78, 184, 50],
-        ['D', 72, 278, 230],
-        ['E', 81, 200, 210],
-        ['F', 72, 170, 100]
-      ];
+      // Obtener datos de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const dataParam = urlParams.get('data');
+      const data = JSON.parse(decodeURIComponent(dataParam));
 
-      var dataTable = google.visualization.arrayToDataTable(data);
+      var dataTable = new google.visualization.DataTable();
+      dataTable.addColumn('string', 'ID');
+      dataTable.addColumn('number', 'X');
+      dataTable.addColumn('number', 'Y');
+      dataTable.addColumn('number', 'Temperature');
+
+      dataTable.addRows(data);
 
       var options = {
         title: 'Bubble Chart Example',
@@ -33,6 +33,6 @@
   </script>
 </head>
 <body>
-  <div id="chart_div" style="width: 1150px; height: 750px;"></div>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
