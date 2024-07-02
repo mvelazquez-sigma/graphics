@@ -29,7 +29,7 @@
         // Convertir el objeto de datos en el formato adecuado para Google Charts
         const dataArray = [['ID', 'Urgencia', 'Complejidad', 'Problema', 'Costo']];
         dataObject.forEach(item => {
-          dataArray.push([item.ID, item.Urgencia, item.Complejidad, item.Problema,item.Costo]);
+          dataArray.push([item.a_ID, item.b_Urgencia, item.c_Complejidad, item.d_Problema,item.e_Costo]);
         });
 
         var data = google.visualization.arrayToDataTable(dataArray);
